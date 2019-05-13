@@ -1,24 +1,25 @@
 require("dotenv").config();
 
-var express       = require("express");
-var app           = express();
-var bodyParser    = require("body-parser");
-var mongoose      = require("mongoose");
-var Campground    = require("./models/campground");
-var Comment       = require("./models/comment");
-var seedDB        = require("./seeds");
-var flash          = require("connect-flash");
-var passport      = require("passport");
-var LocalStrategy = require("passport-local");
-var User          = require("./models/user");
-var methodOverride = require("method-override");
+var express           = require("express");
+var app               = express();
+var bodyParser        = require("body-parser");
+var mongoose          = require("mongoose");
+var Campground        = require("./models/campground");
+var Comment           = require("./models/comment");
+var seedDB            = require("./seeds");
+var flash             = require("connect-flash");
+var passport          = require("passport");
+var LocalStrategy     = require("passport-local");
+var User              = require("./models/user");
+var methodOverride    = require("method-override");
 
 //requiring routes
-var commentRoutes    = require("./routes/comments");
-var campgroundRoutes = require("./routes/campgrounds");
+var commentRoutes     = require("./routes/comments");
+var campgroundRoutes  = require("./routes/campgrounds");
 var indexRoutes       = require("./routes/index");
 
-mongoose.connect(process.env.DATABASEURL);
+//mongoose.connect("mongod://localhost/yelp_camp");
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, autoIndex: false });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
