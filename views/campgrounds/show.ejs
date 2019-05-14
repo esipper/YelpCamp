@@ -19,7 +19,7 @@
                     </h5>
                     <div class="clearfix"></div>
                     <p>
-                        <em>Submitted By: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+                        <em>Submitted By: <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
                     </p>
                     <hr>
                     <p class="card-text"><%= campground.description %></p>
