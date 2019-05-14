@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
-app.use(flash());
+//MOMENT CONFIGURATION
+app.locals.moment = require("moment");
 // seedDB(); //seed the database
 
 //PASSPORT CONFIGURATION
@@ -34,8 +35,8 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 
-//MOMENT CONFIGURATION
-app.locals.moment = require("moment");
+//FLASH CONFIGURATION
+app.use(flash());
 
 //PASSPORT CONFIGURATION
 app.use(passport.initialize());
@@ -46,13 +47,13 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
-    res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
     next();
 });
 
 //calling routes
-app.use(indexRoutes);
+app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
