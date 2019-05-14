@@ -1,6 +1,4 @@
 # YelpCamp
-
-#YelpCamp
 * Bootstrap 4
 * User profiles
 * Google Maps location
