@@ -4,3 +4,4 @@
 * Google Maps location
 * Admin roles
 * Search
+* Password reset
